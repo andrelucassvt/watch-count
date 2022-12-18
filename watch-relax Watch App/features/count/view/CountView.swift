@@ -21,6 +21,7 @@ struct CountView: View {
                     Text("Parabéns")
                         .padding()
                     Text("Você conseguiu fazer \(controller.count) cliques em 10 segundos")
+                        .multilineTextAlignment(.center)
                 }
             }
             
@@ -64,8 +65,8 @@ struct CountView: View {
                     Text(controller.count.description)
                         .padding(.bottom,40)
                     
-                    Ellipse()
-                        .frame(width: 50,height: 50)
+                    RoundedRectangle(cornerRadius: 10)
+                        .frame(width: .infinity,height: .infinity)
                         .foregroundColor(.red)
                         .onTapGesture {
                             controller.count += 1

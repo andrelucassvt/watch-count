@@ -23,6 +23,8 @@ struct RankView: View {
                     ForEach(data) { datum in
                         Text(datum.contagem.description)
                     }
+                case .emptyList:
+                    Text("Sem contagens")
                 case .error(let error):
                     Text(error.localizedDescription)
                 default:

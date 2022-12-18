@@ -12,6 +12,7 @@ enum RankState {
     case na
     case loading
     case success(data: [ContadorEntity])
+    case emptyList
     case error(failure: Error)
 }
 
@@ -27,7 +28,11 @@ class RankPresenter: ObservableObject {
             switch result {
             case .success(let list):
                 let result = list.sorted(by: {$0.contagem > $1.contagem})
-                self.state = .success(data: result)
+                if (result.isEmpty) {
+                    self.state = .emptyList
+                } else {
+                    self.state = .success(data: result)
+                }
             case .failure(let error):
                 self.state = .error(failure: error)
             }
